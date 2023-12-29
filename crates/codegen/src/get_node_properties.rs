@@ -836,6 +836,12 @@ fn custom_handlers(node: &Node) -> TokenStream {
                 tokens.push(TokenProperty::from(Token::Function));
             }
         },
+        "PrepareStmt" => quote! {
+            tokens.push(TokenProperty::from(Token::Prepare));
+            if n.query.is_some() {
+            tokens.push(TokenProperty::from(Token::As));
+            }
+        },
         _ => quote! {},
     }
 }

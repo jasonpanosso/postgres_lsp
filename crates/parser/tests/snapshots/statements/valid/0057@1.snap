@@ -1,0 +1,302 @@
+---
+source: crates/parser/tests/statement_parser_test.rs
+description: "PREPARE fooplan (int, text, bool, numeric) AS INSERT INTO foo VALUES($1, $2, $3, $4);"
+---
+Parse {
+    cst: SourceFile@0..85
+      PrepareStmt@0..85
+        Prepare@0..7 "PREPARE"
+        Whitespace@7..8 " "
+        Ident@8..15 "fooplan"
+        Whitespace@15..16 " "
+        Ascii40@16..17 "("
+        TypeName@17..20
+          IntP@17..20 "int"
+        Ascii44@20..21 ","
+        Whitespace@21..22 " "
+        TypeName@22..26
+          TextP@22..26 "text"
+        Ascii44@26..27 ","
+        Whitespace@27..28 " "
+        TypeName@28..32
+          Ident@28..32 "bool"
+        Ascii44@32..33 ","
+        Whitespace@33..34 " "
+        TypeName@34..41
+          Numeric@34..41 "numeric"
+        Ascii41@41..42 ")"
+        Whitespace@42..43 " "
+        As@43..45 "AS"
+        Whitespace@45..46 " "
+        InsertStmt@46..83
+          Insert@46..52 "INSERT"
+          Whitespace@52..53 " "
+          Into@53..57 "INTO"
+          Whitespace@57..58 " "
+          RangeVar@58..61
+            Ident@58..61 "foo"
+          Whitespace@61..62 " "
+          SelectStmt@62..83
+            Values@62..68 "VALUES"
+            Ascii40@68..69 "("
+            List@69..83
+              ParamRef@69..71
+                Param@69..71 "$1"
+              Ascii44@71..72 ","
+              Whitespace@72..73 " "
+              ParamRef@73..75
+                Param@73..75 "$2"
+              Ascii44@75..76 ","
+              Whitespace@76..77 " "
+              ParamRef@77..79
+                Param@77..79 "$3"
+              Ascii44@79..80 ","
+              Whitespace@80..81 " "
+              ParamRef@81..83
+                Param@81..83 "$4"
+        Ascii41@83..84 ")"
+        Ascii59@84..85 ";"
+    ,
+    errors: [],
+    stmts: [
+        RawStmt {
+            stmt: PrepareStmt(
+                PrepareStmt {
+                    name: "fooplan",
+                    argtypes: [
+                        Node {
+                            node: Some(
+                                TypeName(
+                                    TypeName {
+                                        names: [
+                                            Node {
+                                                node: Some(
+                                                    String(
+                                                        String {
+                                                            sval: "pg_catalog",
+                                                        },
+                                                    ),
+                                                ),
+                                            },
+                                            Node {
+                                                node: Some(
+                                                    String(
+                                                        String {
+                                                            sval: "int4",
+                                                        },
+                                                    ),
+                                                ),
+                                            },
+                                        ],
+                                        type_oid: 0,
+                                        setof: false,
+                                        pct_type: false,
+                                        typmods: [],
+                                        typemod: -1,
+                                        array_bounds: [],
+                                        location: 17,
+                                    },
+                                ),
+                            ),
+                        },
+                        Node {
+                            node: Some(
+                                TypeName(
+                                    TypeName {
+                                        names: [
+                                            Node {
+                                                node: Some(
+                                                    String(
+                                                        String {
+                                                            sval: "text",
+                                                        },
+                                                    ),
+                                                ),
+                                            },
+                                        ],
+                                        type_oid: 0,
+                                        setof: false,
+                                        pct_type: false,
+                                        typmods: [],
+                                        typemod: -1,
+                                        array_bounds: [],
+                                        location: 22,
+                                    },
+                                ),
+                            ),
+                        },
+                        Node {
+                            node: Some(
+                                TypeName(
+                                    TypeName {
+                                        names: [
+                                            Node {
+                                                node: Some(
+                                                    String(
+                                                        String {
+                                                            sval: "bool",
+                                                        },
+                                                    ),
+                                                ),
+                                            },
+                                        ],
+                                        type_oid: 0,
+                                        setof: false,
+                                        pct_type: false,
+                                        typmods: [],
+                                        typemod: -1,
+                                        array_bounds: [],
+                                        location: 28,
+                                    },
+                                ),
+                            ),
+                        },
+                        Node {
+                            node: Some(
+                                TypeName(
+                                    TypeName {
+                                        names: [
+                                            Node {
+                                                node: Some(
+                                                    String(
+                                                        String {
+                                                            sval: "pg_catalog",
+                                                        },
+                                                    ),
+                                                ),
+                                            },
+                                            Node {
+                                                node: Some(
+                                                    String(
+                                                        String {
+                                                            sval: "numeric",
+                                                        },
+                                                    ),
+                                                ),
+                                            },
+                                        ],
+                                        type_oid: 0,
+                                        setof: false,
+                                        pct_type: false,
+                                        typmods: [],
+                                        typemod: -1,
+                                        array_bounds: [],
+                                        location: 34,
+                                    },
+                                ),
+                            ),
+                        },
+                    ],
+                    query: Some(
+                        Node {
+                            node: Some(
+                                InsertStmt(
+                                    InsertStmt {
+                                        relation: Some(
+                                            RangeVar {
+                                                catalogname: "",
+                                                schemaname: "",
+                                                relname: "foo",
+                                                inh: true,
+                                                relpersistence: "p",
+                                                alias: None,
+                                                location: 58,
+                                            },
+                                        ),
+                                        cols: [],
+                                        select_stmt: Some(
+                                            Node {
+                                                node: Some(
+                                                    SelectStmt(
+                                                        SelectStmt {
+                                                            distinct_clause: [],
+                                                            into_clause: None,
+                                                            target_list: [],
+                                                            from_clause: [],
+                                                            where_clause: None,
+                                                            group_clause: [],
+                                                            group_distinct: false,
+                                                            having_clause: None,
+                                                            window_clause: [],
+                                                            values_lists: [
+                                                                Node {
+                                                                    node: Some(
+                                                                        List(
+                                                                            List {
+                                                                                items: [
+                                                                                    Node {
+                                                                                        node: Some(
+                                                                                            ParamRef(
+                                                                                                ParamRef {
+                                                                                                    number: 1,
+                                                                                                    location: 69,
+                                                                                                },
+                                                                                            ),
+                                                                                        ),
+                                                                                    },
+                                                                                    Node {
+                                                                                        node: Some(
+                                                                                            ParamRef(
+                                                                                                ParamRef {
+                                                                                                    number: 2,
+                                                                                                    location: 73,
+                                                                                                },
+                                                                                            ),
+                                                                                        ),
+                                                                                    },
+                                                                                    Node {
+                                                                                        node: Some(
+                                                                                            ParamRef(
+                                                                                                ParamRef {
+                                                                                                    number: 3,
+                                                                                                    location: 77,
+                                                                                                },
+                                                                                            ),
+                                                                                        ),
+                                                                                    },
+                                                                                    Node {
+                                                                                        node: Some(
+                                                                                            ParamRef(
+                                                                                                ParamRef {
+                                                                                                    number: 4,
+                                                                                                    location: 81,
+                                                                                                },
+                                                                                            ),
+                                                                                        ),
+                                                                                    },
+                                                                                ],
+                                                                            },
+                                                                        ),
+                                                                    ),
+                                                                },
+                                                            ],
+                                                            sort_clause: [],
+                                                            limit_offset: None,
+                                                            limit_count: None,
+                                                            limit_option: Default,
+                                                            locking_clause: [],
+                                                            with_clause: None,
+                                                            op: SetopNone,
+                                                            all: false,
+                                                            larg: None,
+                                                            rarg: None,
+                                                        },
+                                                    ),
+                                                ),
+                                            },
+                                        ),
+                                        on_conflict_clause: None,
+                                        returning_list: [],
+                                        with_clause: None,
+                                        r#override: OverridingNotSet,
+                                    },
+                                ),
+                            ),
+                        },
+                    ),
+                },
+            ),
+            range: 0..84,
+        },
+    ],
+}

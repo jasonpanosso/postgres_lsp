@@ -345,4 +345,17 @@ mod tests {
             ],
         )
     }
+
+    #[test]
+    fn test_prepare() {
+        test_get_node_properties(
+            "PREPARE fooplan (int, text, bool, numeric) AS INSERT INTO foo VALUES($1, $2, $3, $4);",
+            SyntaxKind::PrepareStmt,
+            vec![
+                TokenProperty::from(SyntaxKind::Prepare),
+                TokenProperty::from(SyntaxKind::As),
+                TokenProperty::from("fooplan".to_string()),
+            ],
+        )
+    }
 }
