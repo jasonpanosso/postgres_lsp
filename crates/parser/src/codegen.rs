@@ -358,4 +358,16 @@ mod tests {
             ],
         )
     }
+
+    #[test]
+    fn test_execute() {
+        test_get_node_properties(
+            "EXECUTE fooplan(1, 'Hunter Valley', 't', 200.00);",
+            SyntaxKind::ExecuteStmt,
+            vec![
+                TokenProperty::from(SyntaxKind::Execute),
+                TokenProperty::from("fooplan".to_string()),
+            ],
+        )
+    }
 }

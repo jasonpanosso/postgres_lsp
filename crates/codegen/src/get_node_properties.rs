@@ -842,6 +842,9 @@ fn custom_handlers(node: &Node) -> TokenStream {
             tokens.push(TokenProperty::from(Token::As));
             }
         },
+        "ExecuteStmt" => quote! {
+            tokens.push(TokenProperty::from(Token::Execute));
+        },
         _ => quote! {},
     }
 }

@@ -1,0 +1,110 @@
+---
+source: crates/parser/tests/statement_parser_test.rs
+description: "EXECUTE fooplan(1, 'Hunter Valley', 't', 200.00);"
+---
+Parse {
+    cst: SourceFile@0..49
+      ExecuteStmt@0..49
+        Execute@0..7 "EXECUTE"
+        Whitespace@7..8 " "
+        Ident@8..15 "fooplan"
+        Ascii40@15..16 "("
+        AConst@16..17
+          Iconst@16..17 "1"
+        Ascii44@17..18 ","
+        Whitespace@18..19 " "
+        AConst@19..34
+          Sconst@19..34 "'Hunter Valley'"
+        Ascii44@34..35 ","
+        Whitespace@35..36 " "
+        AConst@36..39
+          Sconst@36..39 "'t'"
+        Ascii44@39..40 ","
+        Whitespace@40..41 " "
+        AConst@41..47
+          Fconst@41..47 "200.00"
+        Ascii41@47..48 ")"
+        Ascii59@48..49 ";"
+    ,
+    errors: [],
+    stmts: [
+        RawStmt {
+            stmt: ExecuteStmt(
+                ExecuteStmt {
+                    name: "fooplan",
+                    params: [
+                        Node {
+                            node: Some(
+                                AConst(
+                                    AConst {
+                                        isnull: false,
+                                        location: 16,
+                                        val: Some(
+                                            Ival(
+                                                Integer {
+                                                    ival: 1,
+                                                },
+                                            ),
+                                        ),
+                                    },
+                                ),
+                            ),
+                        },
+                        Node {
+                            node: Some(
+                                AConst(
+                                    AConst {
+                                        isnull: false,
+                                        location: 19,
+                                        val: Some(
+                                            Sval(
+                                                String {
+                                                    sval: "Hunter Valley",
+                                                },
+                                            ),
+                                        ),
+                                    },
+                                ),
+                            ),
+                        },
+                        Node {
+                            node: Some(
+                                AConst(
+                                    AConst {
+                                        isnull: false,
+                                        location: 36,
+                                        val: Some(
+                                            Sval(
+                                                String {
+                                                    sval: "t",
+                                                },
+                                            ),
+                                        ),
+                                    },
+                                ),
+                            ),
+                        },
+                        Node {
+                            node: Some(
+                                AConst(
+                                    AConst {
+                                        isnull: false,
+                                        location: 41,
+                                        val: Some(
+                                            Fval(
+                                                Float {
+                                                    fval: "200.00",
+                                                },
+                                            ),
+                                        ),
+                                    },
+                                ),
+                            ),
+                        },
+                    ],
+                },
+            ),
+            range: 0..48,
+        },
+    ],
+}
